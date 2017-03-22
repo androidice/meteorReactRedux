@@ -30,6 +30,7 @@ class CoursesPage
   }
 
   render(){
+    debugger;
     return (
       <div>
         <h1>Courses</h1>
@@ -54,6 +55,7 @@ CoursesPage.propTypes = {
 };
 
 function mapStateToProps(state, ownProps){
+  debugger;
   return {
     courses: state.courses // determined from root reducer: reducers/index.js
   };
