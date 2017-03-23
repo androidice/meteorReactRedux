@@ -66,7 +66,7 @@ function mapDispatchToProps(dispatch) {
     createCourse: (course)=>{
       dispatch(courseActions.createCourse(course));
     }
-  }
+  };
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(CoursesPage);
