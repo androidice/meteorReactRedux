@@ -17,12 +17,12 @@ class CoursesPage
 
   onTitleChange(event){
     const course = this.state.course;
-    course.title = event.target.value;
-    this.setState({course: course});
+    course.title = event.target.value;// mutate the state and change the title on every keystroke
+    this.setState({course: course});// set the state, this will cause re render on components
   }
 
   onClickSave() {
-      this.props.dispatch(courseActions.createCourse(this.state.course));
+      this.props.createCourse(this.state.course);
   }
 
   courseRow(course, index){
@@ -30,7 +30,6 @@ class CoursesPage
   }
 
   render(){
-    debugger;
     return (
       <div>
         <h1>Courses</h1>
@@ -49,16 +48,25 @@ class CoursesPage
   }
 }
 
-CoursesPage.propTypes = {
-  dispatch: PropTypes.func.isRequired,
-  courses: PropTypes.array.isRequired
+CoursesPage.propTypes = { // add a validation on dispatch and courses properties, dispatch is automatically
+                          // added by react-redux via connect
+  courses: PropTypes.array.isRequired,
+  createCourse: PropTypes.func.isRequired
 };
 
-function mapStateToProps(state, ownProps){
-  debugger;
+function mapStateToProps(state, ownProps){ // this function will fired when a state from reducer is returned
   return {
-    courses: state.courses // determined from root reducer: reducers/index.js
+    courses: state.courses // determined from root reducer: reducers/index.js,
+                            // this will add this.props.courses property in the component
   };
 }
 
-export default connect(mapStateToProps)(CoursesPage);
+function mapDispatchToProps(dispatch) {
+  return {
+    createCourse: (course)=>{
+      dispatch(courseActions.createCourse(course));
+    }
+  }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(CoursesPage);
