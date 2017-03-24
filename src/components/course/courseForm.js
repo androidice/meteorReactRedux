@@ -1,6 +1,5 @@
 import React from 'react';
 
-
 const CourseForm = ({course, allAuthors, onSave, onChange, loading, errors})=> {
   return (
     <form>
