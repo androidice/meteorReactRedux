@@ -1,9 +1,10 @@
 import React from 'react';
 
-const CourseForm = ({course, allAuthors, onSave, onChange, loading, errors})=> {
+export const CourseForm = ({course, allAuthors, onSave, onChange, loading, errors})=> {
   return (
     <form>
       <h1>Manage Course</h1>
+      <h2>Course From</h2>
     </form>
   );
 };
@@ -16,5 +17,3 @@ CourseForm.propTypes = {
   loading:  React.PropTypes.bool,
   errors: React.PropTypes.object
 };
-
-export default CourseForm;
