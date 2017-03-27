@@ -1,6 +1,9 @@
 import React from 'react';
 
 export const CourseForm = ({course, allAuthors, onSave, onChange, loading, errors})=> {
+  debugger;
+  console.log('authors', allAuthors);
+  console.log('course', course);
   return (
     <form>
       <h1>Manage Course</h1>

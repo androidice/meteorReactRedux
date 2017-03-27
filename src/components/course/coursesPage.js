@@ -29,7 +29,8 @@ CoursesPage.propTypes = { // add a validation on dispatch and courses properties
 };
 
 function mapStateToProps(state, ownProps){ // this function will fired when a state from reducer is returned
-   return {
+  debugger;
+  return {
     courses: state.courses // determined from root reducer: reducers/index.js,
                             // this will add this.props.courses property in the component
   };
