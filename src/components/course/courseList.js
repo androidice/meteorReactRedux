@@ -3,7 +3,7 @@ import CourseListRow from './courseListRow';
 
 const CourseList = ({courses}) =>{
   return (
-    <table>
+    <table className="table table-inverse">
       <thead>
       <tr>
         <th>&nbsp;</th>

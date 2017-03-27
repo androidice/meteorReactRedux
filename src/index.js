@@ -7,8 +7,11 @@ import { Provider } from 'react-redux';
 import routes from './routes';
 import { loadCourses }  from './actions/courseAction';
 import { loadAuthors } from './actions/authorAction';
-import './styles/styles.css';
+import '../node_modules/bootstrap/dist/css/bootstrap.css';
 import '../node_modules/bootstrap/dist/css/bootstrap-theme.min.css';
+import './styles/styles.css';
+
+
 
 const store = configureStore();
 store.dispatch(loadCourses());

@@ -13,14 +13,22 @@ class ManageCoursePage extends React.Component {
       authors: Object.assign([], this.props.authors),
       errors: {}
     };
+
+    this.onChange = this.onChange.bind(this);
+    this.onSave = this.onSave.bind(this);
   }
 
-  onSave(){
-
+  onSave(event){
+    debugger;
+    event.preventDefault();
+    this.props.actions.saveCourse(this.state.course);
   }
 
-  onChange(){
-
+  onChange(event){
+    const field = event.target.name;
+    let course = this.state.course;
+    course[field] = event.target.value;
+    return this.setState({course: course});
   }
 
   render() {
@@ -38,7 +46,8 @@ class ManageCoursePage extends React.Component {
 
 ManageCoursePage.propTypes = {
   course: PropTypes.object.isRequired,
-  authors: PropTypes.array
+  authors: PropTypes.array,
+  actions: PropTypes.object
 };
 
 function mapStateToProps(state, ownProps) {
@@ -50,7 +59,6 @@ function mapStateToProps(state, ownProps) {
     length: '',
     category: ''
   };
-  debugger;
 
   const authorFormat = state.authors.map((author)=>{// reformating of data
     return {

@@ -3,19 +3,29 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import * as courseActions from '../../actions/courseAction';
 import CourseList from './courseList';
+import { browserHistory } from 'react-router';
 
 class CoursesPage
   extends React.Component {
   constructor(props, context){
     super(props,context);
+
+    this.redirectToAddCoursePage = this.redirectToAddCoursePage.bind(this);
   }
 
-
+  redirectToAddCoursePage(){
+    browserHistory.push('/course');
+  }
 
   render(){
     return (
       <div>
         <h1>Courses</h1>
+        <input
+        type="submit"
+        value="Add Course"
+        className="btn btn-primary"
+        onClick={this.redirectToAddCoursePage}/>
         <CourseList courses={this.props.courses}/>
       </div>
     );
@@ -29,7 +39,6 @@ CoursesPage.propTypes = { // add a validation on dispatch and courses properties
 };
 
 function mapStateToProps(state, ownProps){ // this function will fired when a state from reducer is returned
-  debugger;
   return {
     courses: state.courses // determined from root reducer: reducers/index.js,
                             // this will add this.props.courses property in the component
