@@ -18,6 +18,17 @@ class ManageCoursePage extends React.Component {
     this.onSave = this.onSave.bind(this);
   }
 
+  componentWillReceiveProps(nextProps){
+    debugger;
+    if(this.props.course.id != nextProps.course.id){
+      //Necessary to update from when existing course is loaded directly
+      this.setState({course: Object.assign({}, nextProps.course)});
+    }
+    if(nextProps.authors.length > 0){
+      this.setState({authors: Object.assign([], nextProps.authors)});
+    }
+  }
+
   onSave(event){
     event.preventDefault();
     this.props.actions.saveCourse(this.state.course);
@@ -68,7 +79,7 @@ function getCourseById(courses, courseId){
 
 ManageCoursePage.propTypes = {
   course: PropTypes.object.isRequired,
-  authors: PropTypes.array,
+  authors: PropTypes.array.isRequired,
   actions: PropTypes.object
 };
 
