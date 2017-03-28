@@ -2,7 +2,6 @@ import * as types from '../actions/actionTypes';
 import initialState from './initialState';
 
 export default function courseReducer(state = initialState.courses, action){
-  debugger;
   switch (action.type){
     case types.CREATE_COURSE:
       return [...state, // spread operator, explode or create new instance of state array
