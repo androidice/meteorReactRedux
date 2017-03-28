@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import * as courseActions from '../../actions/courseAction';
 import { CourseForm } from './courseForm';
+import toastr  from 'toastr';
 
 class ManageCoursePage extends React.Component {
   constructor(props, context) {
@@ -20,7 +21,6 @@ class ManageCoursePage extends React.Component {
   }
 
   componentWillReceiveProps(nextProps){
-    debugger;
     if(this.props.course.id != nextProps.course.id){
       //Necessary to update from when existing course is loaded directly
       this.setState({course: Object.assign({}, nextProps.course)});
@@ -35,11 +35,15 @@ class ManageCoursePage extends React.Component {
     event.preventDefault();
     this.props.actions.saveCourse(this.state.course).then(()=>{
        this.redirect();
+    }).catch((error)=>{
+      this.setState({saving: false});
+      toastr.error(error);
     });
   }
 
   redirect(){
      this.setState({saving: false});
+     toastr.success('Course Saved');
      this.context.router.push('/courses');
   }
 
@@ -73,7 +77,6 @@ function getCourseById(courses, courseId){
     length: '',
     category: ''
   };
-  debugger;
   if(courseId){
     course = courses.filter((_course)=>{
       return (_course.id === courseId);
@@ -97,7 +100,6 @@ ManageCoursePage.contextTypes = {
 };
 
 function mapStateToProps(state, ownProps) {
-  debugger;
   let courseId = ownProps.params.id || undefined;
   let course = getCourseById(state.courses, courseId);
 

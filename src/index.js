@@ -9,6 +9,7 @@ import { loadCourses }  from './actions/courseAction';
 import { loadAuthors } from './actions/authorAction';
 import '../node_modules/bootstrap/dist/css/bootstrap.css';
 import '../node_modules/bootstrap/dist/css/bootstrap-theme.min.css';
+import '../node_modules/toastr/build/toastr.min.css';
 import './styles/styles.css';
 
 
