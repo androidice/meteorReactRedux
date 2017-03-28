@@ -44,6 +44,28 @@ class ManageCoursePage extends React.Component {
   }
 }
 
+function getCourseById(courses, courseId){
+  let course = {
+    id: '',
+    title: '',
+    watchHref: '',
+    authorId: '',
+    length: '',
+    category: ''
+  };
+  debugger;
+  if(courseId){
+    course = courses.filter((_course)=>{
+      return (_course.id === courseId);
+    });
+
+    if(course[0]){
+      return course [0];
+    }
+  }
+  return course;
+}
+
 ManageCoursePage.propTypes = {
   course: PropTypes.object.isRequired,
   authors: PropTypes.array,
@@ -55,14 +77,9 @@ ManageCoursePage.contextTypes = {
 };
 
 function mapStateToProps(state, ownProps) {
-  let course = {
-    id: '',
-    title: '',
-    watchHref: '',
-    authorId: '',
-    length: '',
-    category: ''
-  };
+  debugger;
+  let courseId = ownProps.params.id || undefined;
+  let course = getCourseById(state.courses, courseId);
 
   const authorFormat = state.authors.map((author)=>{// reformating of data
     return {
